@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { AiOutlineSetting, AiOutlineHome } from "react-icons/ai";
 import { MdOutlineCalendarToday } from "react-icons/md";
 import { RxExit } from "react-icons/rx";
-import logo_utb from "../assets/logo_utb.png";
-import "../styles/Principal/menulateral.css";
+import logo_utb from "../../assets/logo_utb.png";
+import "../../styles/Principal/menulateral.css";
 import { useNavigate } from "react-router-dom";
 
 const MenuLateral = () => {
@@ -21,7 +21,7 @@ const MenuLateral = () => {
     if (direccion.startsWith("http")) {
       window.location.href = direccion;
     } else {
-      // navigate(direccion);
+      navigate(direccion);
     }
     setSidebarVisible(false);
   };
@@ -42,11 +42,13 @@ const MenuLateral = () => {
       key: "inicio",
       icon: <AiOutlineHome />,
       label: "Inicio",
+      onClick: () => redireccionar("/"),
     },
     {
       key: "calendario",
       icon: <MdOutlineCalendarToday />,
       label: "Calendario",
+      onClick: () => redireccionar("/aula-activa"),
     },
     {
       key: "configuracion",

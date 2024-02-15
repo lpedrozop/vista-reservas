@@ -1,14 +1,9 @@
 import React from "react";
-import { BrowserRouter as Router } from "react-router-dom";
 import "./styles/index.css";
-import Principal from "./views/Principal";
+import Rutas from "../src/rutas/Rutas";
 
 function App() {
-  return (
-    <Router>
-      <Principal />
-    </Router>
-  );
+  return <Rutas />;
 }
 
 export default App;

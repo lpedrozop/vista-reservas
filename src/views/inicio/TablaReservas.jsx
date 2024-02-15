@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { message } from "antd";
-import "../styles/Principal/contenido.css";
+import "../../styles/Principal/contenido.css";
 
 const TablaReservas = () => {
   const [reservas, setReservas] = useState(

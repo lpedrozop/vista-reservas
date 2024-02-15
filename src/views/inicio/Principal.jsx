@@ -1,6 +1,6 @@
 import MenuLateral from "./MenuLateral";
 import Contenido from "./Contenido";
-import '../styles/Principal/principal.css';
+import "../../styles/Principal/principal.css";
 
 function Principal() {
   return (
