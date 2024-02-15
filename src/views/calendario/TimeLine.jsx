@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../../styles/calendario/timeline.css";
 
 const events = [
@@ -45,6 +45,7 @@ const colorAleatorio = () => {
 
 const TimeLine = () => {
   const [currentTime, setCurrentTime] = useState(getCurrentTime());
+  const [eventColors, setEventColors] = useState([]);
 
   function getCurrentTime() {
     const now = new Date();
@@ -53,13 +54,18 @@ const TimeLine = () => {
     return { hours, minutes };
   }
 
+  useEffect(() => {
+    const colors = events.map(() => colorAleatorio());
+    setEventColors(colors);
+  }, []);
+
   setInterval(() => {
     setCurrentTime(getCurrentTime());
   }, 60000);
 
   const crearEventos = () => {
     const columns = [[], [], []];
-    events.forEach((event) => {
+    events.forEach((event, index) => {
       const { hours: startHours, minutes: startMinutes } = event.start;
       const userPosition = event.user - 1;
 
@@ -74,7 +80,7 @@ const TimeLine = () => {
           style={{
             position: "relative",
             top: `${topPercent}%`,
-            backgroundColor: colorAleatorio(),
+            backgroundColor: eventColors[index],
             color: "#fff",
             padding: "5px",
             width: "60%",
