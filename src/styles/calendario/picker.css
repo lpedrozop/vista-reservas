@@ -1,0 +1,82 @@
+.body-calendar {
+  width: 25vw;
+  background-color: var(--primary-color);
+  padding: 20px;
+}
+
+.hdr-calendar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.hdr-calendar a {
+  display: flex;
+  border-radius: 50%;
+  color: var(--primary-color);
+  background-color: #fff;
+  width: 27px;
+  height: 27px;
+  font-size: 20px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.4s;
+}
+
+.hdr-calendar a:hover {
+  background-color: var(--green-color);
+  color: #fff;
+  transition: all 0.4s;
+}
+
+.titulo-fecha {
+  color: #fff;
+  font-size: 20px;
+}
+
+.dias-calendar {
+  display: flex;
+  justify-content: space-around;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 400;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #fff;
+}
+
+.fechas-calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  cursor: pointer;
+  color: #fff;
+  font-weight: 600;
+}
+
+.fecha-calendar {
+  padding: 5px;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.hoy-calendar {
+  background-color: #f00;
+  width: 24px;
+  border-radius: 50%;
+  background-color: #fff;
+  margin-left: 10px;
+  color: var(--primary-color);
+}
+
+.btn-fecha-actual {
+  display: flex;
+  padding: 10px 0px;
+  color: #fff;
+  font-size: 18px;
+  justify-content: center;
+  border: 1px solid #fff;
+  margin-top: 10px;
+  cursor: pointer;
+}
