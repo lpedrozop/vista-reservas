@@ -34,7 +34,7 @@ const events = [
   },
 ];
 
-const getRandomColor = () => {
+const colorAleatorio = () => {
   const letters = "0123456789ABCDEF";
   let color = "#";
   for (let i = 0; i < 6; i++) {
@@ -74,7 +74,7 @@ const TimeLine = () => {
           style={{
             position: "relative",
             top: `${topPercent}%`,
-            backgroundColor: getRandomColor(),
+            backgroundColor: colorAleatorio(),
             color: "#fff",
             padding: "5px",
             width: "60%",
