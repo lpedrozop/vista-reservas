@@ -1,124 +1,212 @@
 import React, { useState, useEffect } from "react";
 import "../../styles/calendario/timeline.css";
+import { Calendar, dayjsLocalizer } from "react-big-calendar";
+import "react-big-calendar/lib/css/react-big-calendar.css";
+import dayjs, { locale } from "dayjs";
+import { CiCalendar } from "react-icons/ci";
+import { LuCalendarCheck } from "react-icons/lu";
+import { FaChevronLeft, FaChevronRight, FaCalendarAlt } from "react-icons/fa";
+import "dayjs/locale/es";
 
-const events = [
-  {
-    user: 1,
-    title: "A1 301",
-    start: { hours: 23, minutes: 0 },
-    end: { hours: 23, minutes: 59 },
-  },
-  {
-    user: 2,
-    title: "A1 401",
-    start: { hours: 10, minutes: 0 },
-    end: { hours: 15, minutes: 0 },
-  },
-  {
-    user: 3,
-    title: "A2 502",
-    start: { hours: 0, minutes: 0 },
-    end: { hours: 1, minutes: 0 },
-  },
-  {
-    user: 3,
-    title: "A4 204",
-    start: { hours: 2, minutes: 0 },
-    end: { hours: 4, minutes: 0 },
-  },
-  {
-    user: 1,
-    title: "A2 302",
-    start: { hours: 2, minutes: 0 },
-    end: { hours: 4, minutes: 0 },
-  },
-];
-
-const colorAleatorio = () => {
-  const letters = "0123456789ABCDEF";
-  let color = "#";
-  for (let i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
-  }
-  return color;
-};
+dayjs(locale("es"));
 
 const TimeLine = () => {
-  const [currentTime, setCurrentTime] = useState(getCurrentTime());
-  const [eventColors, setEventColors] = useState([]);
+  const localizer = dayjsLocalizer(dayjs);
+  // const reservas = [];
+  // for (let i = 0; i < 8; i++) {
+  //   const reserva = {
+  //     start: dayjs("2024-02-19T21:00:00").toDate(),
+  //     end: dayjs("2024-02-19T23:59:00").toDate(),
+  //     title: `A2-502-${i + 1}`,
+  //     nameUser: `Usuario${i + 1}`,
+  //   };
 
-  function getCurrentTime() {
-    const now = new Date();
-    const hours = now.getHours();
-    const minutes = now.getMinutes();
-    return { hours, minutes };
-  }
+  //   reservas.push(reserva);
+  // }
 
-  useEffect(() => {
-    const colors = events.map(() => colorAleatorio());
-    setEventColors(colors);
-  }, []);
+  const reservas = [
+    {
+      start: dayjs("2024-02-19T20:00:00").toDate(),
+      end: dayjs("2024-02-19T22:00:00").toDate(),
+      title: "A2-502",
+      nameUser: "Jose Mendoza",
+    },
 
-  setInterval(() => {
-    setCurrentTime(getCurrentTime());
-  }, 60000);
+    {
+      start: dayjs("2024-02-19T8:00:00").toDate(),
+      end: dayjs("2024-02-19T10:00:00").toDate(),
+      title: "A1-401",
+      nameUser: "Jose Mendoza",
+    },
+    {
+      start: dayjs("2024-02-20T7:00:00").toDate(),
+      end: dayjs("2024-02-20T9:00:00").toDate(),
+      title: "A2-502",
+      nameUser: "Jose Mendoza",
+    },
+    {
+      start: dayjs("2024-02-21T10:00:00").toDate(),
+      end: dayjs("2024-02-21T12:00:00").toDate(),
+      title: "A1-401",
+      nameUser: "Jose Mendoza",
+    },
+    {
+      start: dayjs("2024-02-08T10:00:00").toDate(),
+      end: dayjs("2024-02-08T12:00:00").toDate(),
+      title: "A4-303",
+      nameUser: "Jose Mendoza",
+    },
+    {
+      start: dayjs("2024-02-16T10:00:00").toDate(),
+      end: dayjs("2024-02-16T12:00:00").toDate(),
+      title: "A1-202",
+      nameUser: "Jose Mendoza",
+    },
+  ];
 
-  const crearEventos = () => {
-    const columns = [[], [], []];
-    events.forEach((event, index) => {
-      const { hours: startHours, minutes: startMinutes } = event.start;
-      const userPosition = event.user - 1;
+  let formats = {
+    timeGutterFormat: "HH:mm",
+  };
 
-      const topPercent =
-        ((startHours * 60 + startMinutes) / (24 * 60)) * 100 +
-        (userPosition * 33 * 100) / 99;
+  const components = {
+    event: (event) => {
+      const horaActual = dayjs();
 
-      columns[userPosition].push(
-        <div
-          key={event.title}
-          className="event"
-          style={{
-            position: "relative",
-            top: `${topPercent}%`,
-            backgroundColor: eventColors[index],
-            color: "#fff",
-            padding: "5px",
-            width: "60%",
-            height: "80px",
-          }}
-        >
-          {event.title}
+      if (
+        event &&
+        event.event &&
+        event.event.end instanceof Date &&
+        horaActual.isAfter(event.event.end)
+      ) {
+        return (
+          <div className="event-closed">
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              {event.title}
+              <LuCalendarCheck
+                style={{ marginLeft: "10px", fontSize: "20px" }}
+              />
+            </div>{" "}
+            <div
+              className="avatar-event"
+              style={{
+                backgroundImage: `url(${"https://i.redd.it/ypire7te8rc71.jpg"})`,
+              }}
+            ></div>
+          </div>
+        );
+      } else {
+        return (
+          <div className="event-open">
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              {event.title}
+              <LuCalendarCheck
+                style={{ marginLeft: "10px", fontSize: "20px" }}
+              />
+            </div>{" "}
+            <div
+              className="avatar-event"
+              style={{
+                backgroundImage: `url(${"https://i.redd.it/ypire7te8rc71.jpg"})`,
+              }}
+            ></div>
+          </div>
+        );
+      }
+    },
+  };
+
+  const CustomToolbar = ({ date, onNavigate, view, onView }) => {
+    const manejoCambio = (action) => {
+      onNavigate(action);
+    };
+
+    const cambioVista = (nuevaVista) => {
+      if (nuevaVista !== view) {
+        onView(nuevaVista);
+      }
+    };
+
+    return (
+      <div className="toolbar-calendar">
+        <div className="calendar-buttons">
+          <button
+            className="btn-calendar-label btn-back-calendar"
+            onClick={() => manejoCambio("PREV")}
+          >
+            <FaChevronLeft />
+          </button>
+          <label className="date-label">
+            {date.toLocaleString("default", {
+              day: "numeric",
+              month: "long",
+              year: "numeric",
+            })}
+          </label>
+          <button
+            className="btn-calendar-label btn-next-calendar"
+            onClick={() => manejoCambio("NEXT")}
+          >
+            <FaChevronRight />
+          </button>
         </div>
-      );
-    });
 
-    return columns.map((column, index) => (
-      <div key={index} className="events-container">
-        {column}
+        <div className="container-filter">
+          <button
+            className={`bg-filter-${view === "day" ? "on" : "off"}`}
+            onClick={() => cambioVista("day")}
+          >
+            <span className={`label-filter-${view === "day" ? "on" : "off"}`}>
+              Dia
+            </span>
+          </button>
+          <button
+            className={`bg-filter-${view === "week" ? "on" : "off"}`}
+            onClick={() => cambioVista("week")}
+          >
+            <span className={`label-filter-${view === "week" ? "on" : "off"}`}>
+              Semana
+            </span>
+          </button>
+          <button
+            className={`bg-filter-${view === "month" ? "on" : "off"}`}
+            onClick={() => cambioVista("month")}
+          >
+            <span className={`label-filter-${view === "month" ? "on" : "off"}`}>
+              Mes
+            </span>
+          </button>
+        </div>
       </div>
-    ));
+    );
   };
 
   return (
     <div className="day-calendar">
-      <div className="timeline">
-        {[...Array(24).keys()].map((hour) => (
-          <div key={hour} className="hour-marker">
-            {`${hour}:00`}
-          </div>
-        ))}
-      </div>
-      <div
-        className="time-marker"
-        style={{
-          top: `${
-            ((currentTime.hours * 60 + currentTime.minutes) / (24 * 60)) * 100
-          }%`,
+      <Calendar
+        localizer={localizer}
+        events={reservas}
+        views={["month", "week", "day"]}
+        defaultView="day"
+        showAllEvents={true}
+        formats={formats}
+        min={dayjs("2024-02-19T7:00:00").toDate()}
+        max={dayjs("2024-02-19T23:59:00").toDate()}
+        components={{
+          event: components.event,
+          toolbar: CustomToolbar,
         }}
-      >
-        {" "}
-      </div>
-      {crearEventos()}
+        style={{ height: "100%", width: "100%" }}
+      />
     </div>
   );
 };

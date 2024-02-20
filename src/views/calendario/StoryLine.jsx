@@ -1,32 +1,84 @@
+import { useState } from "react";
 import "../../styles/calendario/storyline.css";
 import TimeLine from "./TimeLine";
 
 function Storyline() {
-  const dataUserAssistant = [
+  const [showAllAvatars, setShowAllAvatars] = useState(false);
+  const inicialesUser = [
     {
-      imageUrl:
-        "https://assets.manutd.com/AssetPicker/images/0/0/10/126/687707/Legends-Profile_Cristiano-Ronaldo1523460877263.jpg",
-      name: "Jose M",
+      name: "Jose Mendoza",
     },
     {
-      imageUrl: "https://fcb-abj-pre.s3.amazonaws.com/img/jugadors/MESSI.jpg",
-      name: "Lucas M",
+      name: "Lucas Pedrozo",
     },
     {
-      imageUrl:
-        "https://media.tycsports.com/files/2023/10/07/628008/jude-bellingham_862x485_wmk.webp?v=1",
-      name: "Michael C",
+      name: "Julian Camacho",
+    },
+    {
+      name: "Michael Casadiegos",
+    },
+    {
+      name: "Dilia Rosa",
+    },
+    {
+      name: "Luis A",
     },
   ];
+
+  const perfilAvatar = (users) => {
+    const maxAvatars = 4;
+    const usuariosAux = users.length - maxAvatars;
+
+    const sortAux = [...users].sort((a, b) => a.name.localeCompare(b.name));
+
+    return (
+      <div className="avatar-container">
+        {sortAux.map((user, index) => (
+          <div
+            className={`avatar-profile ${
+              !showAllAvatars && index >= maxAvatars ? "hidden-avatar" : ""
+            }`}
+            key={index}
+            style={{ backgroundColor: colorAleatorio() }}
+          >
+            {obtenerIniciales(user.name)}
+          </div>
+        ))}
+        {usuariosAux > 0 && (
+          <div
+            className="avatar-profile-more"
+            onClick={() => setShowAllAvatars(!showAllAvatars)}
+          >
+            +{usuariosAux}
+          </div>
+        )}
+      </div>
+    );
+  };
+
+  const colorAleatorio = () => {
+    const letters = "0123456789ABCDEF";
+    let color = "#";
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  };
+
+  const obtenerIniciales = (name) => {
+    const initials = name
+      .split(" ")
+      .map((word) => word[0])
+      .join("")
+      .toUpperCase();
+    return initials;
+  };
+
   return (
     <div className="story-line">
       <div className="head-story">
-        {dataUserAssistant.map((user) => (
-          <div key={user.name} className="profile-user-story">
-            <p>{user.name}</p>
-            <img className="user-story" src={user.imageUrl} alt={user.name} />
-          </div>
-        ))}
+        <h5>Calendario Reservas - Administrador</h5>
+        {perfilAvatar(inicialesUser)}
       </div>
       <TimeLine />
     </div>
