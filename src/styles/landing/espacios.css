@@ -1,0 +1,97 @@
+.cnt-espacio {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 75vh;
+  height: auto;
+  background-color: #dae9fc;
+}
+
+.espacios-utb {
+  margin: 0 auto;
+  width: 70%;
+  height: 85%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.espacios-utb h5 {
+  margin: 0;
+  width: 100%;
+  text-align: center;
+  color: var(--font-color);
+  font-size: 31px;
+  margin-top: 1.5rem;
+}
+
+.espacios-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-top: 4.3rem;
+  margin-bottom: 20px;
+  justify-content: space-between;
+}
+
+.card-espacio {
+  background-color: rgba(255, 255, 255, 0.5);
+  height: 40vh;
+  width: 100%;
+  max-width: 320px;
+  box-shadow: var(--box-shadow);
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
+.img-card {
+  height: 50%;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+.info-card-reserva {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 50%;
+  text-align: center;
+}
+
+.info-card-reserva h6 {
+  margin: 0;
+  font-size: 27px;
+  color: var(--font-color);
+}
+
+.info-card-reserva p {
+  margin: 0;
+  font-size: 16px;
+  color: var(--font-color);
+  text-align: justify;
+}
+
+.cnt-btn-reservas {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+}
+
+@media (max-width: 955px) {
+  .espacios-utb {
+    width: 90%;
+  }
+
+  .espacios-wrap {
+    justify-content: center;
+    margin-right: 0;
+  }
+
+  .card-espacio {
+    margin-right: 0;
+  }
+}

@@ -1,0 +1,21 @@
+.cnt-calendario {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.head-calendario h4 {
+  margin: 0;
+  margin-left: 20px;
+  font-size: 22px;
+  color: var(--font-color);
+}
+
+.picker-calendario {
+  display: flex;
+  max-width: 100%;
+  overflow: hidden;
+  margin: 20px;
+  box-shadow: var(--box-shadow);
+}

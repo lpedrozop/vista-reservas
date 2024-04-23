@@ -1,0 +1,16 @@
+.body-left {
+  width: 25vw;
+  display: flex;
+  flex-direction: column;
+}
+
+.header-body-left {
+  width: 100%;
+  height: 8.3%;
+  background-color: var(--green-color);
+}
+
+.content-body-left {
+  width: 100%;
+  height: 91.7%;
+}

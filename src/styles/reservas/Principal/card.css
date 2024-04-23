@@ -1,0 +1,77 @@
+.cards-reservas {
+  display: flex;
+  flex-direction: row;
+  overflow-x: hidden;
+  width: 92vw;
+  padding: 10px 0;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.card-container {
+  flex-shrink: 0;
+  border: 1px solid var(--gray-color);
+  background-color: #fff;
+  overflow: hidden;
+  width: 250px;
+  margin-right: 10px;
+  box-shadow: var(--box-shadow);
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  height: 100px;
+}
+
+.header-card {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 30px;
+  width: 100%;
+  background-color: var(--green-color);
+}
+
+.header-card svg {
+  color: #fff;
+  font-size: 18px;
+}
+
+.card-title {
+  margin: 0;
+  color: #fff;
+  font-size: 14px;
+}
+
+.foot-card {
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+}
+
+.ft-crd {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+}
+
+.ft-crd h5 {
+  margin: 0;
+  margin-right: 5px;
+  color: var(--font-color);
+}
+
+.estado-color {
+  color: rgb(239, 184, 16);
+  font-size: 14px;
+}
+
+.card-description {
+  font-size: 14px;
+  color: #c4c4c4;
+  padding: 5px;
+  margin: 0;
+}
