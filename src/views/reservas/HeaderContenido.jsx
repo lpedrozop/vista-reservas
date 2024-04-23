@@ -1,5 +1,5 @@
-import "../../../styles/reservas/Principal/headerPrincipal.css";
-import logo_utb from "../../../assets/logo_utb.png";
+import "../../styles/reservas/Principal/headerPrincipal.css";
+import logo_utb from "../../assets/logo_utb.png";
 import { BiSearch, BiBell, BiMailSend } from "react-icons/bi";
 
 function HeaderContenido() {

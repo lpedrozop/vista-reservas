@@ -1,12 +1,12 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Principal from "../views/reservas/inicio/Principal";
-import Calendario from "../views/reservas/calendario/Calendario";
 import Landing from "../views/landing/Landing";
+import Formulario from "../views/formulario/Formulario";
+import Dashboard from "../views/reservas/Dashboard";
 
 export const routes = [
   { path: "/", element: <Landing /> },
-  { path: "/dashboard", element: <Principal /> },
-  { path: "/dashboard/aula-activa", element: <Calendario /> },
+  { path: "/dashboard", element: <Dashboard /> },
+  { path: "/form", element: <Formulario /> },
 ];
 
 export function RutasDomain() {

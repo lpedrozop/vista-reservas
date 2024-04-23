@@ -1,0 +1,21 @@
+.auxiliares {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  width: 100%;
+  background-color: var(--white-color);
+}
+
+.aux-list {
+  width: 30%;
+  height: 100%;
+  overflow-y: auto;
+  padding: 30px;
+  border-right: 2px solid var(--gray-color);
+}
+
+.aux-picker {
+  width: 70%;
+  height: 100%;
+  padding: 30px;
+}

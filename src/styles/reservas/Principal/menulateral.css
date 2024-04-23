@@ -3,6 +3,12 @@
   background-color: #fff;
   border-right: 1px solid var(--gray-color);
   width: 80px;
+  height: 100vh;
+  transition: width 0.3s ease;
+}
+
+.menu-toggle {
+  display: none;
 }
 
 .custom-menu-lateral {
@@ -28,19 +34,23 @@
 
 .custom-menu-lateral li:hover {
   border-left: 4px solid var(--primary-color);
-  transition: all 0.4s;
 }
 
 .custom-menu-lateral li:hover {
   background-color: rgba(0, 103, 184, 0.1);
   color: var(--primary-color);
-  transition: all 0.4s;
 }
 
 .custom-icon {
   font-size: 24px;
-  transition: none;
   height: 18px;
   margin-left: -5px;
   margin-top: -6px;
+}
+
+@media screen and (max-width: 768px) {
+  .custom-barra {
+    width: 0;
+    border-right: none;
+  }
 }

@@ -5,10 +5,10 @@ import {
   BiMenuAltLeft,
   BiUser,
 } from "react-icons/bi";
-import "../../../styles/reservas/Principal/menulateral.css";
-import { redireccionar } from "../../../utils/redireccionarRutas";
+import "../../styles/reservas/Principal/menulateral.css";
+import { redireccionar } from "../../utils/redireccionarRutas";
 
-const MenuLateral = () => {
+const MenuLateral = ({ onItemClick }) => {
   const clickItem = (item) => {
     if (item.onClick) {
       item.onClick();
@@ -17,23 +17,25 @@ const MenuLateral = () => {
 
   const items = [
     {
-      key: "logoUtb",
+      key: "menu",
       icon: <BiMenuAltLeft />,
+      onClick: () => redireccionar("/form"),
     },
     {
       key: "inicio",
       icon: <BiHomeAlt2 />,
-      onClick: () => redireccionar("/dashboard"),
+      onClick: () => onItemClick("inicio"),
     },
     {
       key: "calendario",
       icon: <BiCalendarAlt />,
-      onClick: () => redireccionar("/dashboard/aula-activa"),
+      onClick: () => onItemClick("calendario"),
     },
     {
-      key: "configuracion",
+      key: "asignar",
       icon: <BiUser />,
-      label: "Configuracion",
+      label: "Asignar",
+      onClick: () => onItemClick("asignar"),
     },
     {
       key: "salir",
