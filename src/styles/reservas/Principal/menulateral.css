@@ -1,19 +1,17 @@
 .custom-barra {
   overflow: hidden;
-  background-color: #fff;
+  background-color: var(--white-color);
   border-right: 1px solid var(--gray-color);
   width: 80px;
   height: 100vh;
   transition: width 0.3s ease;
-}
-
-.menu-toggle {
-  display: none;
+  position: fixed;
 }
 
 .custom-menu-lateral {
   list-style-type: none;
   padding: 0;
+  width: 80px;
   height: 100%;
 }
 
@@ -48,9 +46,5 @@
   margin-top: -6px;
 }
 
-@media screen and (max-width: 768px) {
-  .custom-barra {
-    width: 0;
-    border-right: none;
-  }
+@media screen and (max-width: 780px) {
 }

@@ -3,7 +3,8 @@ import { Link } from "react-scroll";
 import { useState } from "react";
 import { BiAlignRight } from "react-icons/bi";
 import LogoUtb from "../../assets/utb.png";
-import { redireccionar } from "../../utils/redireccionarRutas";
+import { signIn } from "../../auth/authRedirect";
+import {redireccionar} from '../../utils/redireccionarRutas';
 
 function NavbarComponent() {
   const [abrirMenu, setAbrirMenu] = useState(false);
@@ -14,6 +15,10 @@ function NavbarComponent() {
 
   const cerrarMenu = () => {
     setAbrirMenu(false);
+  };
+
+  const manejoInicioSesion = () => {
+    signIn();
   };
 
   return (
@@ -64,9 +69,7 @@ function NavbarComponent() {
           <div className="social-nav">
             <ul>
               <li>
-                <a href="#" onClick={() => redireccionar("/dashboard")}>
-                  Iniciar Sesion
-                </a>
+                <a onClick={manejoInicioSesion}>Iniciar Sesion</a>
               </li>
             </ul>
           </div>

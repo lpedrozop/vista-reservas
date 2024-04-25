@@ -1,13 +1,14 @@
 .cnt-panel {
-  width: 100%;
+  width: calc(100vw - 80px);
   height: 100%;
   display: flex;
   flex-direction: row;
 }
 
-.cnt-dashbpard {
+.cnt-dashboard {
   height: 100vh;
-  width: 100%;
+  width: calc(100vw - 80px);
   display: flex;
   flex-direction: column;
+  margin-left: 80px;
 }

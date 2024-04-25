@@ -29,7 +29,7 @@ function EspacioComponent() {
             <CardEspacio
               imagen={Aulas}
               titulo="Aulas de clase"
-              parrafo="Aula destinada a la enseñanza en la universidad. Equipado con asientos, pizarras y video-beam."
+              parrafo="Aula destinada a la enseñanza en la universidad. Equipado con asientos, computadoras, pizarras y video-beam."
             />
             <CardEspacio
               imagen={Auditorio}

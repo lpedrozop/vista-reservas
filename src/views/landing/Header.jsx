@@ -5,10 +5,7 @@ function Header() {
     <section className="header-info">
       <div className="info-left">
         <div className="cnt-info-header">
-          <h4>
-            SISTEMA DE RESERVAS <br />
-            DE ESPACIOS UTB
-          </h4>
+          <h4>Sistema de reservas de espacios UTB</h4>
           <p>
             La Universidad Tecnologica de Bolivar te ofrece reservar espacios
             del campus de forma rapida y sencilla. Revisa la disponibilidad,

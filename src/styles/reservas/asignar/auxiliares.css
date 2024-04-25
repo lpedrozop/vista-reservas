@@ -7,15 +7,114 @@
 }
 
 .aux-list {
-  width: 30%;
-  height: 100%;
+  width: 20%;
+  height: 80%;
   overflow-y: auto;
   padding: 30px;
   border-right: 2px solid var(--gray-color);
 }
 
+.aux-list h5 {
+  font-size: 24px;
+  color: var(--font-color);
+  margin: 0;
+  margin-bottom: 1.6rem;
+}
+
+.aux-list::-webkit-scrollbar {
+  width: 9px;
+}
+
+.aux-list::-webkit-scrollbar-thumb {
+  background-color: var(--primary-color);
+}
+
+.aux-card {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 20px;
+  border: 2px solid var(--gray-color);
+  border-radius: 5px;
+}
+
+.aux-card:hover {
+  background-color: #d3d3d3;
+}
+
+.aux-card.selected {
+  background-color: var(--gray-color);
+}
+
+.aux-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 15px;
+}
+
+.aux-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.aux-details {
+  flex: 1;
+}
+
+.aux-name {
+  font-weight: bold;
+  color: var(--font-color);
+  font-size: 17px;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.aux-state {
+  color: var(--gray-color-strong);
+  font-weight: 500;
+}
+
 .aux-picker {
-  width: 70%;
+  width: 30%;
   height: 100%;
   padding: 30px;
+  border-right: 2px solid var(--gray-color);
+}
+
+.aux-assign {
+  width: 50%;
+  height: 100%;
+  padding: 30px;
+}
+
+@media screen and (max-width: 780px) {
+  .auxiliares {
+    flex-direction: column;
+    overflow-y: auto;
+  }
+
+  .aux-list {
+    width: 100%;
+    height: 20vh;
+    overflow-y: auto;
+    border-bottom: 2px solid var(--gray-color);
+  }
+
+  .aux-picker {
+    width: 100%;
+    height: 20vh;
+    overflow-y: auto;
+    border-bottom: 2px solid var(--gray-color);
+  }
+
+  .aux-assign {
+    height: 40vh;
+    overflow-y: auto;
+    width: 100%;
+  }
 }

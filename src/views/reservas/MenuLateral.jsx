@@ -7,12 +7,17 @@ import {
 } from "react-icons/bi";
 import "../../styles/reservas/Principal/menulateral.css";
 import { redireccionar } from "../../utils/redireccionarRutas";
+import { signOut } from "../../auth/authRedirect";
 
 const MenuLateral = ({ onItemClick }) => {
   const clickItem = (item) => {
     if (item.onClick) {
       item.onClick();
     }
+  };
+
+  const manejoCerrarSesion = () => {
+    signOut();
   };
 
   const items = [
@@ -40,7 +45,7 @@ const MenuLateral = ({ onItemClick }) => {
     {
       key: "salir",
       icon: <BiExit style={{ transform: "rotate(180deg)" }} />,
-      onClick: () => redireccionar("/"),
+      onClick: () => manejoCerrarSesion(),
     },
   ];
 

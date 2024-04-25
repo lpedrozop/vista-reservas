@@ -1,0 +1,141 @@
+.assign-cnt {
+  height: 82%;
+  width: 100%;
+}
+
+.assign-cnt h5 {
+  margin: 0;
+  font-size: 24px;
+  margin-bottom: 1.6rem;
+  color: var(--font-color);
+}
+
+.assignment-container {
+  margin: auto;
+  height: 75vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.assignment-inputs {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 30vh;
+}
+
+.top-inputs {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.bottom-inputs {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.assignment-inputs select,
+.assignment-inputs input,
+.assignment-inputs button {
+  margin-bottom: 10px;
+  width: 45%;
+  height: 7vh;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 16px;
+  color: var(--font-color);
+  background-color: var(--gray-color);
+}
+
+.assignment-inputs button {
+  background-color: var(--blue-color);
+  color: var(--font-color);
+  cursor: pointer;
+}
+
+.assignment-inputs button:hover {
+  background-color: var(--dark-blue-color);
+}
+
+.established-assignments {
+  margin-top: 3cap;
+}
+
+.blocks {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  max-height: 35vh;
+  overflow-y: auto;
+}
+
+.blocks::-webkit-scrollbar {
+  width: 9px;
+}
+
+.blocks::-webkit-scrollbar-thumb {
+  background-color: var(--primary-color);
+}
+
+.block {
+  display: flex;
+  flex-direction: column;
+  height: 11vh;
+  text-align: center;
+  align-items: center;
+  background-color: var(--gray-color);
+  border-radius: 5px;
+  margin-bottom: 20px;
+  margin-right: 20px;
+}
+
+.head-assigment-time {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.head-assigment-time h6 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.head-assigment-time p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.foot-assigment-time {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  padding: 10px;
+  border-radius: 0 0 5px 5px;
+  font-size: 14px;
+}
+
+.btn-assign-aux {
+  padding: 15px;
+  color: var(--white-color);
+  background-color: var(--primary-color);
+  border-radius: 5px;
+  cursor: pointer;
+  width: 30%;
+  display: flex;
+  justify-content: space-evenly;
+  text-align: center;
+  align-items: center;
+}
+
+.btn-assign-aux svg {
+  font-size: 22px;
+  color: var(--white-color);
+}
+
+.btn-assign-aux:hover {
+  opacity: 0.7;
+}

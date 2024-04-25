@@ -1,8 +1,12 @@
+import React from "react";
 import "../../styles/reservas/Principal/headerPrincipal.css";
 import logo_utb from "../../assets/logo_utb.png";
-import { BiSearch, BiBell, BiMailSend } from "react-icons/bi";
+import { BiSearch } from "react-icons/bi";
+import { obtenerIniciales } from "../../utils/initials";
 
-function HeaderContenido() {
+function HeaderContenido({ userData, loading }) {
+  const userInitials = userData ? obtenerIniciales(userData.name) : "";
+
   return (
     <div className="head-cnt-page">
       <div className="search-head">
@@ -13,12 +17,8 @@ function HeaderContenido() {
       </div>
       <div className="user-head">
         <div className="user-initials">
-          <div className="icons-name">
-            <BiMailSend />
-            <BiBell />
-          </div>
-          <div className="user-avatar-head"></div>
-          <p>Jose Mendoza</p>
+          <div className="user-avatar-head">{userInitials}</div>
+          {loading ? <p>Cargando...</p> : userData && <p>{userData.name}</p>}
         </div>
       </div>
     </div>
