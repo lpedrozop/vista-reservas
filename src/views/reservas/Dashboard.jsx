@@ -31,7 +31,9 @@ function Dashboard() {
     };
 
     fetchData();
-  }, [showLoader, hideLoader]);
+  }, []);
+
+  console.log(userData);
 
   const renderContenido = () => {
     switch (contenido) {

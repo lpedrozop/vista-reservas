@@ -6,6 +6,7 @@ import { obtenerIniciales } from "../../utils/initials";
 
 function HeaderContenido({ userData, loading }) {
   const userInitials = userData ? obtenerIniciales(userData.name) : "";
+  
 
   return (
     <div className="head-cnt-page">
