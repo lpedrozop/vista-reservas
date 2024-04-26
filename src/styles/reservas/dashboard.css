@@ -12,3 +12,13 @@
   flex-direction: column;
   margin-left: 80px;
 }
+
+@media screen and (max-width: 780px) {
+  .cnt-panel {
+    width: 100%;
+  }
+
+  .cnt-dashboard {
+    margin-left: 0px;
+  }
+}

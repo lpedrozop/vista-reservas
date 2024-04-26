@@ -6,3 +6,9 @@
   height: calc(100vh - 121px);
   box-shadow: var(--box-shadow);
 }
+
+@media screen and (max-width: 780px) {
+  .cnt-asignar {
+    width: 100vw;
+  }
+}

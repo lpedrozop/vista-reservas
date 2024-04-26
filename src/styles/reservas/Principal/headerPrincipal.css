@@ -82,6 +82,7 @@
   .head-cnt-page {
     display: flex;
     justify-content: space-between;
+    width: 100vw;
   }
 
   .search-head {
