@@ -1,23 +1,30 @@
-import * as jwt_decode from "jwt-decode";
-
 export async function fetchTokenInfo() {
   try {
-    const tokenCookie = document.cookie
-      .split(";")
-      .map((cookie) => cookie.trim())
-      .find((cookie) => cookie.startsWith("access_token"));
+    const token = localStorage.getItem("access_token");
+    console.log(token);
 
-    if (tokenCookie) {
-      const token = tokenCookie.substring("access_token".length);
-      const decodedToken = jwt_decode(token);
-      console.log(decodedToken);
-      return decodedToken;
+    if (token) {
+      const response = await fetch("https://graph.microsoft.com/v1.0/me", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (response.ok) {
+        const userData = await response.json();
+        console.log(userData);
+        return userData;
+      } else {
+        throw new Error(
+          `Error en la solicitud: ${response.status} - ${response.statusText}`
+        );
+      }
     } else {
-      console.log("paso por aqui");
+      console.log("No se encontró el token en el almacenamiento local");
       return null;
     }
   } catch (error) {
-    console.error("Error al obtener el token de las cookies:", error);
+    console.error("Error al obtener los datos del usuario:", error);
     throw error;
   }
 }
