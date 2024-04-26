@@ -26,7 +26,6 @@ function selectAccount(currentAccounts) {
 export function handleResponse(response) {
   if (response !== null) {
     username = response.account.username;
-    redireccionar("/dashboard")
   } else {
     const currentAccounts = myMSALObj.getAllAccounts();
     const selectedUsername = selectAccount(currentAccounts);
