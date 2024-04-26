@@ -43,7 +43,7 @@ export const protectedResources = {
   todolistApi: {
     endpoint: "https://graph.microsoft.com/v1.0/me",
     scopes: {
-      read: ["api://cc30dbee-cc7a-421e-845c-80c1ee92db0b/Todolist.Read"],
+      read: ["https://graph.microsoft.com/User.Read"],
       write: ["api://cc30dbee-cc7a-421e-845c-80c1ee92db0b/Todolist.ReadWrite"],
     },
   },

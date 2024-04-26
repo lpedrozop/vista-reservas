@@ -26,6 +26,7 @@ function selectAccount(currentAccounts) {
 export function handleResponse(response) {
   if (response !== null) {
     username = response.account.username;
+    redireccionar("/dashboard")
   } else {
     const currentAccounts = myMSALObj.getAllAccounts();
     const selectedUsername = selectAccount(currentAccounts);
@@ -59,5 +60,6 @@ export function signOut() {
     account: myMSALObj.getAccountByUsername(username),
   };
   redireccionar("/");
+  localStorage.removeItem("access_token");
   myMSALObj.logoutRedirect(logoutRequest);
 }

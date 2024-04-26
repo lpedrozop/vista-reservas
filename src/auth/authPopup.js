@@ -1,6 +1,6 @@
 import * as msal from "@azure/msal-browser";
 import { myMSALObj, loginRequest } from "./authConfig";
-import {redireccionar} from '../utils/redireccionarRutas';
+import { redireccionar } from "../utils/redireccionarRutas";
 
 let username = "";
 
@@ -64,6 +64,8 @@ export function signOut() {
   myMSALObj.logoutPopup(logoutRequest).then(() => {
     window.location.reload();
   });
+
+  localStorage.removeItem("access_token");
 }
 
 selectAccount();
