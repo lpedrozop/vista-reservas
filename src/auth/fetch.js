@@ -1,7 +1,13 @@
 import Cookies from "universal-cookie";
-import { getTokenPopup } from "./authPopup";
-import { getTokenRedirect } from "./authRedirect";
+import * as msal from "@azure/msal-browser";
+import {
+  myMSALObj,
+  loginRequest,
+  getTokenPopup,
+  getTokenRedirect,
+} from "./authConfig";
 import { protectedResources } from "./authConfig";
+import { redireccionar } from "../utils/redireccionarRutas";
 
 const cookies = new Cookies();
 
@@ -99,8 +105,11 @@ export async function getToken() {
     return null;
   }
 
-  cookies.set("access_token", tokenResponse.accessToken, { path: "/" });
-  localStorage.setItem("access_token", tokenResponse.accessToken);
+  const accessToken = tokenResponse.accessToken;
 
-  return tokenResponse;
+  cookies.set("access_token", accessToken, { path: "/" });
+
+  localStorage.setItem("access_token", accessToken);
+
+  return accessToken;
 }

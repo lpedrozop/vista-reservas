@@ -39,18 +39,24 @@ export const msalConfig = {
   },
 };
 
-export const protectedResources = {
-  todolistApi: {
-    endpoint: "https://graph.microsoft.com/v1.0/me",
-    scopes: {
-      read: ["https://graph.microsoft.com/User.Read"],
-      write: ["api://cc30dbee-cc7a-421e-845c-80c1ee92db0b/Todolist.ReadWrite"],
-    },
-  },
-};
-
 export const loginRequest = {
   scopes: ["User.Read"],
 };
 
 export const myMSALObj = new msal.PublicClientApplication(msalConfig);
+
+export async function getTokenPopup(request) {
+  return myMSALObj.loginPopup({
+    ...loginRequest,
+    ...request,
+    redirectUri: "/redirect",
+  });
+}
+
+export async function getTokenRedirect(request) {
+  return myMSALObj.loginRedirect({
+    ...loginRequest,
+    ...request,
+    redirectUri: "/redirect",
+  });
+}
