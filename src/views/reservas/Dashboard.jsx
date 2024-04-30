@@ -33,8 +33,6 @@ function Dashboard() {
     fetchData();
   }, []);
 
-  console.log(userData);
-
   const renderContenido = () => {
     switch (contenido) {
       case "inicio":

@@ -1,26 +1,19 @@
 export async function fetchTokenInfo() {
   try {
-    const token = localStorage.getItem("access_token");
-    console.log(token);
+    const sessionToken = sessionStorage.getItem("msal.account.keys");
 
-    if (token) {
-      const response = await fetch("https://graph.microsoft.com/v1.0/me", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+    if (sessionToken) {
+      const tokenObject = JSON.parse(sessionToken)[0];
 
-      if (response.ok) {
-        const userData = await response.json();
-        console.log(userData);
-        return userData;
-      } else {
-        throw new Error(
-          `Error en la solicitud: ${response.status} - ${response.statusText}`
-        );
+      try {
+        const accessToken = sessionStorage.getItem(tokenObject);
+        const response = JSON.parse(accessToken);
+        return response;
+      } catch {
+        console.log("error");
       }
     } else {
-      console.log("No se encontró el token en el almacenamiento local");
+      console.log("No se encontró el token en el almacenamiento de sesión");
       return null;
     }
   } catch (error) {
