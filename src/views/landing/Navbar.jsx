@@ -4,7 +4,6 @@ import { useState } from "react";
 import { BiAlignRight } from "react-icons/bi";
 import LogoUtb from "../../assets/utb.png";
 import { signIn } from "../../auth/authRedirect";
-import {redireccionar} from '../../utils/redireccionarRutas';
 
 function NavbarComponent() {
   const [abrirMenu, setAbrirMenu] = useState(false);

@@ -7,7 +7,6 @@ import {
   getTokenRedirect,
 } from "./authConfig";
 import { protectedResources } from "./authConfig";
-import { redireccionar } from "../utils/redireccionarRutas";
 
 const cookies = new Cookies();
 

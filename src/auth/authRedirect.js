@@ -1,7 +1,6 @@
 // authRedirect.js
 import * as msal from "@azure/msal-browser";
 import { myMSALObj, loginRequest } from "./authConfig";
-import { redireccionar } from "../utils/redireccionarRutas";
 
 let username = "";
 
@@ -26,7 +25,6 @@ function selectAccount(currentAccounts) {
 export function handleResponse(response) {
   if (response !== null) {
     username = response.account.username;
-    redireccionar("/dashboard")
   } else {
     const currentAccounts = myMSALObj.getAllAccounts();
     const selectedUsername = selectAccount(currentAccounts);
@@ -59,7 +57,6 @@ export function signOut() {
   const logoutRequest = {
     account: myMSALObj.getAccountByUsername(username),
   };
-  redireccionar("/");
   localStorage.removeItem("access_token");
   myMSALObj.logoutRedirect(logoutRequest);
 }
