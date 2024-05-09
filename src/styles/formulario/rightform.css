@@ -182,6 +182,15 @@
   animation: stroke 0.5s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
 }
 
+:where(.css-dev-only-do-not-override-1rqnfsa).ant-message .ant-message-notice-wrapper .ant-message-notice-content {
+  padding: 15px 25px;
+  font-size: 15px;
+}
+
+.anticon svg {
+  font-size: 20px;
+}
+
 @keyframes stroke {
   0% {
     fill: transparent;

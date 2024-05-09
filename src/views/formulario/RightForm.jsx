@@ -82,7 +82,7 @@ function RightForm({ materias }) {
       const codigoValidado = value.toUpperCase();
 
       if (!codigoValidado.startsWith("T000")) {
-        message.error("El código debe comenzar con T000.");
+        message.error("El código debe comenzar con T000.", 8);
       }
     };
 
@@ -168,7 +168,7 @@ function RightForm({ materias }) {
         !selectedProfesor ||
         !motivo
       ) {
-        message.error("Por favor, complete todos los campos.");
+        message.error("Por favor, complete todos los campos.", 8);
         return;
       }
 
@@ -460,7 +460,9 @@ function RightForm({ materias }) {
         !selectedSalon ||
         !capacidad
       ) {
-        message.error("Por favor, complete todos los campos.", 5);
+        message.error("Por favor, complete todos los campos.", 8, {
+          style: { fontSize: "20px" },
+        });
         return;
       }
 
@@ -497,11 +499,11 @@ function RightForm({ materias }) {
         }, 2500);
       } catch (error) {
         if (error.message) {
-          message.error(error.message, 5);
+          message.error(error.message, 8);
         } else {
           message.error(
             "Error al realizar la reserva. Por favor, inténtelo de nuevo más tarde.",
-            5
+            8
           );
         }
       }
