@@ -474,6 +474,8 @@ function RightForm({ materias }) {
         Capacidad: capacidad,
       };
 
+      console.log(data)
+
       try {
         await peticionForm(
           "https://sire-utb-x2ifq.ondigitalocean.app/form/create_reser",

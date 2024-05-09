@@ -98,7 +98,7 @@ function HeaderContenido({ userData, loading }) {
             closable={false}
             onClose={onClose}
             open={menuVisible}
-            width={200}
+            width={240}
           >
             {items.map((item) => (
               <li

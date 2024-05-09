@@ -250,7 +250,7 @@
 @media screen and (max-width: 762px) {
   .rg-form {
     width: 90%;
-    height: 95vh;
+    height: auto;
   }
 
   .cnt-form {
