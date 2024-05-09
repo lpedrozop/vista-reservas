@@ -5,6 +5,9 @@ function Input({
   readOnly,
   onChange,
   value,
+  onBlur,
+  disabled,
+  min,
 }) {
   return (
     <div className="input-frm">
@@ -17,6 +20,9 @@ function Input({
         name={id}
         readOnly={readOnly}
         onChange={onChange}
+        onBlur={onBlur}
+        disabled={disabled}
+        min={min}
       />
     </div>
   );

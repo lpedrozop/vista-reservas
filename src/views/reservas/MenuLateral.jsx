@@ -1,10 +1,5 @@
-import {
-  BiExit,
-  BiHomeAlt2,
-  BiCalendarAlt,
-  BiMenuAltLeft,
-  BiUser,
-} from "react-icons/bi";
+import { BiExit, BiHomeAlt2, BiCalendarAlt, BiUser } from "react-icons/bi";
+import { FaWpforms } from "react-icons/fa";
 import "../../styles/reservas/Principal/menulateral.css";
 import { redireccionar } from "../../utils/redireccionarRutas";
 import { signOut } from "../../auth/authRedirect";
@@ -22,14 +17,14 @@ const MenuLateral = ({ onItemClick }) => {
 
   const items = [
     {
-      key: "menu",
-      icon: <BiMenuAltLeft />,
-      onClick: () => redireccionar("/form"),
-    },
-    {
       key: "inicio",
       icon: <BiHomeAlt2 />,
       onClick: () => onItemClick("inicio"),
+    },
+    {
+      key: "menu",
+      icon: <FaWpforms />,
+      onClick: () => redireccionar("/form"),
     },
     {
       key: "calendario",

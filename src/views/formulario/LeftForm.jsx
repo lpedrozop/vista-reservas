@@ -1,10 +1,16 @@
 import "../../styles/formulario/leftform.css";
 import { HiOutlineArrowNarrowRight } from "react-icons/hi";
+import { IoClose } from "react-icons/io5";
+import { redireccionar } from "../../utils/redireccionarRutas";
 
 function LeftForm() {
   return (
     <div className="lf-form">
       <div className="head-lf-frm">
+        <IoClose
+          style={{ fontSize: "25px", cursor: "pointer", marginBottom: "20px" }}
+          onClick={() => redireccionar("/dashboard")}
+        />
         <h5>Sistema de reservas de aula</h5>
         <h3>
           Por favor asegurese <br /> de rellenar todos los campos <br />

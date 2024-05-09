@@ -6,6 +6,7 @@ import { fetchTokenInfo } from "../../utils/fetchTokenInfo";
 import Input from "./InputForm";
 import Select from "./SelectInput";
 import { peticionForm } from "../../utils/peticiones";
+import { redireccionar } from "../../utils/redireccionarRutas";
 
 function RightForm({ materias }) {
   const [currentStep, setCurrentStep] = useState(0);
@@ -64,6 +65,27 @@ function RightForm({ materias }) {
       setSelectedProfesor(value);
     };
 
+    const manejoCodigoCambio = (e) => {
+      const { value } = e.target;
+      const codigoValidado = value.toUpperCase();
+
+      if (!codigoValidado.startsWith("T000")) {
+        setCodigo(value);
+        return;
+      } else {
+        setCodigo(codigoValidado);
+      }
+    };
+
+    const manejoCodigoBlur = (e) => {
+      const { value } = e.target;
+      const codigoValidado = value.toUpperCase();
+
+      if (!codigoValidado.startsWith("T000")) {
+        message.error("El código debe comenzar con T000.");
+      }
+    };
+
     const campos = [
       {
         id: "nombre",
@@ -79,7 +101,8 @@ function RightForm({ materias }) {
         inputType: "text",
         placeholder: "Código",
         value: codigo,
-        onChange: (e) => setCodigo(e.target.value),
+        onChange: manejoCodigoCambio,
+        onBlur: manejoCodigoBlur,
         readOnly: false,
       },
       {
@@ -138,6 +161,17 @@ function RightForm({ materias }) {
     ];
 
     const manejoSiguienteClick = () => {
+      if (
+        !codigo.startsWith("T000") ||
+        !tipoRes ||
+        !selectedMateria ||
+        !selectedProfesor ||
+        !motivo
+      ) {
+        message.error("Por favor, complete todos los campos.");
+        return;
+      }
+
       const data = {
         Nombre: userData?.response?.name || "",
         Codigo: codigo,
@@ -167,6 +201,7 @@ function RightForm({ materias }) {
                   placeholder={campo.placeholder}
                   readOnly={campo.readOnly}
                   onChange={campo.onChange}
+                  onBlur={campo.onBlur}
                 />
               );
             } else if (campo.type === "select") {
@@ -210,23 +245,18 @@ function RightForm({ materias }) {
     const [capacidad, setCapacidad] = useState("");
     const [selectedSalon, setSelectedSalon] = useState("");
 
-    // Función para realizar la solicitud de bloques
     const manejoCambioAula = async (value) => {
-      console.log("Valor seleccionado del campus:", value);
       try {
         setSelectedCampus(value);
         setBloquesDisabled(false);
         setAulasDisabled(false);
 
         const url = `https://sire-utb-x2ifq.ondigitalocean.app/form/bloque/${value}`;
-        console.log("URL de solicitud GET:", url);
 
         const response = await peticionForm(url, "GET");
-        console.log("Respuesta de la API de aulas:", response);
 
         if (Array.isArray(response) && response.length > 0) {
           const numBloques = response.map((bloque) => bloque.Bloque);
-          console.log("Nombres de las aulas:", numBloques);
           setBloques(numBloques);
         } else {
           console.log(
@@ -238,16 +268,17 @@ function RightForm({ materias }) {
       }
     };
 
-    // Función para cambiar el valor de selectedBloque
     const handleBloqueChange = (event) => {
       const { value } = event.target;
       setSelectedBloque(value);
     };
 
-    // Función para cambiar el valor de selectedDia
-    const handleDiaChange = (e) => setSelectedDia(e.target.value);
+    const handleDiaChange = (e) => {
+      setSelectedDia(e.target.value);
+    };
 
-    // Función para cambiar el valor de selectedHoraInicio
+    const currentDate = new Date().toISOString().split("T")[0];
+
     const handleHoraInicioChange = (e) => {
       setSelectedHoraInicio(e.target.value);
       if (
@@ -261,7 +292,6 @@ function RightForm({ materias }) {
       }
     };
 
-    // Función para cambiar el valor de selectedHoraFin
     const handleHoraFinChange = (e) => {
       setSelectedHoraFin(e.target.value);
       if (
@@ -275,10 +305,8 @@ function RightForm({ materias }) {
       }
     };
 
-    // Función para realizar la validación de aulas
     const postValidarAulas = async () => {
       try {
-        // Verificar si todos los campos tienen valores
         if (
           selectedCampus &&
           selectedBloque &&
@@ -316,7 +344,6 @@ function RightForm({ materias }) {
       }
     };
 
-    // Efecto para observar cambios en los campos y realizar la validación
     useEffect(() => {
       postValidarAulas();
     }, [
@@ -332,7 +359,6 @@ function RightForm({ materias }) {
       setSelectedSalon(value);
     };
 
-    // Definición de los campos
     const campos = [
       {
         id: "campus",
@@ -367,6 +393,7 @@ function RightForm({ materias }) {
         placeholder: "Dia",
         defaultValue: "",
         readOnly: false,
+        min: currentDate,
         onChange: handleDiaChange,
         disabled: !selectedCampus,
       },
@@ -414,6 +441,19 @@ function RightForm({ materias }) {
     ];
 
     const manejoSiguienteClick = async () => {
+      if (
+        !selectedCampus ||
+        !selectedBloque ||
+        !selectedDia ||
+        !selectedHoraInicio ||
+        !selectedHoraFin ||
+        !selectedSalon ||
+        !capacidad
+      ) {
+        message.error("Por favor, complete todos los campos.");
+        return;
+      }
+
       const dataString = localStorage.getItem("primer_paso");
       const data_first_stage = JSON.parse(dataString);
 
@@ -434,19 +474,21 @@ function RightForm({ materias }) {
         Capacidad: capacidad,
       };
 
-      console.log(data);
-
       try {
-        const response = await peticionForm(
+        await peticionForm(
           "https://sire-utb-x2ifq.ondigitalocean.app/form/create_reser",
           "POST",
           data
         );
-        console.log("Respuesta de la API:", response);
         localStorage.removeItem("primer_paso");
         setCurrentStep(currentStep + 1);
+        setTimeout(() => {
+          redireccionar("/dashboard");
+        }, 2500);
       } catch (error) {
-        message.error('Error al realizar la reserva. Por favor, inténtelo de nuevo más tarde.');
+        message.error(
+          "Error al realizar la reserva. Por favor, inténtelo de nuevo más tarde."
+        );
       }
     };
 
@@ -463,6 +505,7 @@ function RightForm({ materias }) {
                   placeholder={campo.placeholder}
                   value={campo.value}
                   readOnly={campo.readOnly}
+                  min={campo.min}
                   onChange={campo.onChange}
                   disabled={campo.disabled}
                 />
