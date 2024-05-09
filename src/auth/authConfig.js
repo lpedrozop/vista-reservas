@@ -5,7 +5,7 @@ export const msalConfig = {
     clientId: "80ddcf29-3e47-4bae-9282-d9338060a5a5",
     authority:
       "https://login.microsoftonline.com/fc392005-78b3-4dc1-9257-ffbcff443b61",
-    redirectUri: "/dashboard",
+    redirectUri: "/",
     postLogoutRedirectUri: "/",
   },
   cache: {
@@ -39,8 +39,17 @@ export const msalConfig = {
   },
 };
 
+const protectedResources = {
+  todolistApi: {
+      endpoint: 'https://sire.software/form',
+      scopes: {
+          read: ['api://f928ab89-bd59-4400-8477-829e0cf9cc59/reservas.acceso']
+      },
+  },
+};
+
 export const loginRequest = {
-  scopes: ["User.Read"],
+  scopes: [...protectedResources.todolistApi.scopes.read],
 };
 
 export const myMSALObj = new msal.PublicClientApplication(msalConfig);

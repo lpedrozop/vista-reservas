@@ -6,11 +6,20 @@ export async function fetchTokenInfo() {
       const tokenObject = JSON.parse(sessionToken)[0];
 
       try {
-        const accessToken = sessionStorage.getItem(tokenObject);
-        const response = JSON.parse(accessToken);
-        return response;
-      } catch {
-        console.log("error");
+        const tokenUid = sessionStorage.getItem(tokenObject);
+        const response = JSON.parse(tokenUid);
+        const idToken = response.idTokenClaims.aud;
+
+        const combinedToken = `msal.token.keys.${idToken}`;
+        const accessTokenPeticion = sessionStorage.getItem(combinedToken);
+        const tokenParse = JSON.parse(accessTokenPeticion);
+        const secretKey = sessionStorage.getItem(tokenParse.accessToken);
+        const secretParse = JSON.parse(secretKey);
+
+        return { response, secretParse };
+      } catch (error) {
+        console.error("Error al parsear el token de acceso:", error);
+        throw error;
       }
     } else {
       console.log("No se encontró el token en el almacenamiento de sesión");

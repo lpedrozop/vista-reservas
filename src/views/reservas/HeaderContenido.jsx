@@ -5,8 +5,7 @@ import { BiSearch } from "react-icons/bi";
 import { obtenerIniciales } from "../../utils/initials";
 
 function HeaderContenido({ userData, loading }) {
-  const userInitials = userData ? obtenerIniciales(userData.name) : "";
-  
+  const userInitials = userData ? obtenerIniciales(userData.response.name) : "";
 
   return (
     <div className="head-cnt-page">

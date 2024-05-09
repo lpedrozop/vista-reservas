@@ -1,5 +1,9 @@
-export const camposPrimerPaso = [
-  { type: "input", inputType: "text", placeholder: "Nombre Completo" },
+export const camposPrimerPaso = (userData) => [
+  {
+    type: "input",
+    inputType: "text",
+    placeholder: userData?.response?.name || "",
+  },
   { type: "input", inputType: "text", placeholder: "Codigo" },
   {
     type: "select",
@@ -39,7 +43,7 @@ export const camposPrimerPaso = [
   { type: "input", inputType: "text", placeholder: "Aforo" },
 ];
 
-export const camposSegundoPaso = [
+export const camposSegundoPaso = (userData) => [
   {
     type: "select",
     name: "aula",
