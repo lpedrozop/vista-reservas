@@ -21,13 +21,20 @@ export async function peticionForm(url, method, body = null) {
     const response = await fetch(url, requestOptions);
 
     if (!response.ok) {
-      throw new Error(`Error al realizar la solicitud: ${response.status}`);
+      let errorMessage = `Error al realizar la solicitud: ${response.status}`;
+      if (response.status === 400) {
+        const errorData = await response.json();
+        if (errorData.error) {
+          errorMessage = errorData.error;
+        }
+      }
+      throw new Error(errorMessage);
     }
 
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error("Error al obtener los datos:", error);
+    console.error(error);
     throw error;
   }
 }

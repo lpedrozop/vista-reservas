@@ -245,6 +245,8 @@ function RightForm({ materias }) {
     const [capacidad, setCapacidad] = useState("");
     const [selectedSalon, setSelectedSalon] = useState("");
 
+    const currentDate = new Date().toISOString().split("T")[0];
+
     const manejoCambioAula = async (value) => {
       try {
         setSelectedCampus(value);
@@ -274,10 +276,17 @@ function RightForm({ materias }) {
     };
 
     const handleDiaChange = (e) => {
-      setSelectedDia(e.target.value);
+      const selectedDate = e.target.value;
+      setSelectedDia(selectedDate);
     };
 
-    const currentDate = new Date().toISOString().split("T")[0];
+    const handleFechaBlur = () => {
+      if (!selectedDia) {
+        setSelectedDia(currentDate);
+      } else if (selectedDia < currentDate) {
+        setSelectedDia(currentDate);
+      }
+    };
 
     const handleHoraInicioChange = (e) => {
       setSelectedHoraInicio(e.target.value);
@@ -391,10 +400,11 @@ function RightForm({ materias }) {
         type: "input",
         inputType: "date",
         placeholder: "Dia",
-        defaultValue: "",
+        value: selectedDia,
         readOnly: false,
         min: currentDate,
         onChange: handleDiaChange,
+        onBlur: handleFechaBlur,
         disabled: !selectedCampus,
       },
       {
@@ -450,7 +460,7 @@ function RightForm({ materias }) {
         !selectedSalon ||
         !capacidad
       ) {
-        message.error("Por favor, complete todos los campos.");
+        message.error("Por favor, complete todos los campos.", 5);
         return;
       }
 
@@ -474,8 +484,6 @@ function RightForm({ materias }) {
         Capacidad: capacidad,
       };
 
-      console.log(data)
-
       try {
         await peticionForm(
           "https://sire-utb-x2ifq.ondigitalocean.app/form/create_reser",
@@ -488,9 +496,14 @@ function RightForm({ materias }) {
           redireccionar("/dashboard");
         }, 2500);
       } catch (error) {
-        message.error(
-          "Error al realizar la reserva. Por favor, inténtelo de nuevo más tarde."
-        );
+        if (error.message) {
+          message.error(error.message, 5);
+        } else {
+          message.error(
+            "Error al realizar la reserva. Por favor, inténtelo de nuevo más tarde.",
+            5
+          );
+        }
       }
     };
 
@@ -509,6 +522,7 @@ function RightForm({ materias }) {
                   readOnly={campo.readOnly}
                   min={campo.min}
                   onChange={campo.onChange}
+                  onBlur={campo.onBlur}
                   disabled={campo.disabled}
                 />
               );
