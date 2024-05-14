@@ -182,7 +182,9 @@
   animation: stroke 0.5s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
 }
 
-:where(.css-dev-only-do-not-override-1rqnfsa).ant-message .ant-message-notice-wrapper .ant-message-notice-content {
+:where(.css-dev-only-do-not-override-1rqnfsa).ant-message
+  .ant-message-notice-wrapper
+  .ant-message-notice-content {
   padding: 15px 25px;
   font-size: 15px;
 }
@@ -321,7 +323,16 @@
     height: 20%;
   }
 
-  .txt-icon  {
+  .txt-icon {
     display: none;
+  }
+
+  .img-lg-utb {
+    height: auto;
+    width: 100px;
+    margin-bottom: rem;
+    position: relative;
+    top: 10px;
+    padding-block: 20px;
   }
 }

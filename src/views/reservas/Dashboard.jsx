@@ -4,14 +4,17 @@ import HeaderContenido from "./HeaderContenido";
 import Contenido from "../reservas/inicio/Contenido";
 import CntCalendario from "../reservas/calendario/CntCalendario";
 import CntAsignar from "../reservas/asignar/CntAsignar";
+import ProfesorView from "./inicio/ProfesorView";
 import { useLoader } from "../../utils/Loader";
 import { fetchTokenInfo } from "../../utils/fetchTokenInfo";
+import { decodeToken } from "../../utils/decodedToken";
 import "../../styles/reservas/dashboard.css";
 
 function Dashboard() {
   const [userData, setUserData] = useState(null);
   const [contenido, setContenido] = useState("inicio");
   const { loading, showLoader, hideLoader } = useLoader();
+  const [role, setRole] = useState("");
 
   const manejoEstadoContenido = (itemEstado) => {
     setContenido(itemEstado);
@@ -22,6 +25,10 @@ function Dashboard() {
       try {
         showLoader();
         const data = await fetchTokenInfo();
+        const tokenResult = decodeToken(data.secretParse.secret);
+        const userRole = tokenResult.payload.roles[0];
+        setRole(userRole);
+
         setUserData(data);
       } catch (error) {
         console.error("Error al obtener los datos del usuario:", error);
@@ -48,10 +55,13 @@ function Dashboard() {
 
   return (
     <div className="cnt-panel">
-      <MenuLateral onItemClick={manejoEstadoContenido} />
+      <MenuLateral onItemClick={manejoEstadoContenido} role={role} />
       <div className="cnt-dashboard">
         <HeaderContenido userData={userData} loading={loading} />{" "}
-        {renderContenido()}
+        {role === "Profesor" && <ProfesorView />}
+        {/* {role === "Aux_Administrativo" && renderContenido()}{" "}
+        {role === "Estudiante" && renderContenido()}{" "} */}
+        {role === "Administrador" && renderContenido()}{" "}
       </div>
     </div>
   );

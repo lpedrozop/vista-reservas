@@ -37,7 +37,7 @@ function HeaderContenido({ userData, loading }) {
       setIsSmallScreen(window.innerWidth < 900);
     };
 
-    handleResize(); // Para establecer el estado inicial al cargar la página
+    handleResize();
 
     window.addEventListener("resize", handleResize);
 

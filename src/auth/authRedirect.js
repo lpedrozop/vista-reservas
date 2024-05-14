@@ -61,5 +61,6 @@ export function signOut() {
   };
   redireccionar("/");
   localStorage.removeItem("access_token");
+  localStorage.removeItem("primer_paso");
   myMSALObj.logoutRedirect(logoutRequest);
 }
