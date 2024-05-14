@@ -115,6 +115,23 @@ function ProfesorView() {
     }
   };
 
+  const cancelarReserva = async (reservaId) => {
+    try {
+      const response = await peticionForm(
+        `https://sire-utb-x2ifq.ondigitalocean.app/form/cancel_reser/${reservaId}`,
+        "PATCH"
+      );
+      message.success("La reserva ha sido cancelada exitosamente");
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
+      return response;
+    } catch (error) {
+      console.error("Error al rechazar la reserva:", error);
+      message.error("Error al rechazar la reserva");
+    }
+  };
+
   return (
     <div className="cnt-profesor">
       <div className="header-profesor">
@@ -126,7 +143,11 @@ function ProfesorView() {
           {misReservas.length > 0 ? (
             <div className="propia-reserva">
               {misReservas.map((reserva, index) => (
-                <CardPropia key={index} reserva={reserva} />
+                <CardPropia
+                  key={index}
+                  reserva={reserva}
+                  cancelarReserva={cancelarReserva}
+                />
               ))}
             </div>
           ) : (

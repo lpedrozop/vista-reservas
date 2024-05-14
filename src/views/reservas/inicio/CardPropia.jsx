@@ -1,12 +1,16 @@
 import "../../../styles/reservas/Principal/profesor.css";
-import { BiBadgeCheck , BiBuildings, BiTime } from "react-icons/bi";
+import { BiBadgeCheck, BiBuildings, BiTime } from "react-icons/bi";
 import { LuUsers } from "react-icons/lu";
 
-function CardPropia({ reserva }) {
-    const fechaInicio = new Date(reserva.Fh_Ini);
+function CardPropia({ reserva, cancelarReserva }) {
+  const fechaInicio = new Date(reserva.Fh_Ini);
 
-    const fecha = fechaInicio.toLocaleDateString();
-    const hora = fechaInicio.toLocaleTimeString();
+  const fecha = fechaInicio.toLocaleDateString();
+  const hora = fechaInicio.toLocaleTimeString();
+
+  const manejoCancelarReserva = () => {
+    cancelarReserva(reserva.ID_Reserva);
+  };
 
   return (
     <div className="card-propia">
@@ -16,7 +20,7 @@ function CardPropia({ reserva }) {
       <div className="content-propia">
         <div className="icon-text">
           <div>
-            <BiBadgeCheck  /> {reserva.Apr_Doc}
+            <BiBadgeCheck /> {reserva.Apr_Doc}
           </div>
           <div>
             <LuUsers /> {reserva.Aforo}
@@ -31,6 +35,14 @@ function CardPropia({ reserva }) {
             <BiTime />
             {hora}
           </div>
+        </div>
+        <div className="cnt-btn-cancelar">
+          <button
+            className="btn-cancelar-reserva"
+            onClick={manejoCancelarReserva}
+          >
+            Cancelar
+          </button>
         </div>
       </div>
     </div>

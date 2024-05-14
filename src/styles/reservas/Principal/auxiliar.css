@@ -1,0 +1,9 @@
+.cnt-auxiliar {
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  overflow: hidden;
+  margin: 20px;
+  height: calc(100vh - 121px);
+  box-shadow: var(--box-shadow);
+}

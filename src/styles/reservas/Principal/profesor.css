@@ -77,7 +77,7 @@
 }
 
 .card-propia {
-  width: 400px;
+  width: 27vw;
   margin-right: 25px;
   margin-top: 20px;
   height: 150px;
@@ -169,7 +169,7 @@
 }
 
 .card-propia-historial {
-  width: 400px;
+  width: 27vw;
   margin-top: 15px;
   margin-bottom: 5px;
   height: 150px;
@@ -186,6 +186,10 @@
   font-size: 15px;
   align-items: center;
   text-align: center;
+}
+
+.icon-text-historial div {
+   margin-bottom: 10px;
 }
 
 .content-propia-historial {
@@ -277,6 +281,31 @@
   font-size: 18px;
   margin-bottom: 7px;
   color: var(--font-color);
+}
+
+.cnt-btn-cancelar {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.btn-cancelar-reserva {
+  height: 30px;
+  width: 120px;
+  align-items: center;
+  text-align: center;
+  margin-top: 10px;
+  border: none;
+  border-radius: 5px;
+  color: var(--white-color);
+  cursor: pointer;
+  background-color: var(--red-color);
+  transition: all 0.5s;
+}
+
+.btn-cancelar-reserva:hover {
+  opacity: 0.7;
+  transition: all 0.5s;
 }
 
 .buttons-actions {

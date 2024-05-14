@@ -5,6 +5,8 @@ import Contenido from "../reservas/inicio/Contenido";
 import CntCalendario from "../reservas/calendario/CntCalendario";
 import CntAsignar from "../reservas/asignar/CntAsignar";
 import ProfesorView from "./inicio/ProfesorView";
+import EstudianteView from "../reservas/inicio/EstudianteView";
+import AuxiliarView from "./inicio/AuxiliarView";
 import { useLoader } from "../../utils/Loader";
 import { fetchTokenInfo } from "../../utils/fetchTokenInfo";
 import { decodeToken } from "../../utils/decodedToken";
@@ -57,11 +59,11 @@ function Dashboard() {
     <div className="cnt-panel">
       <MenuLateral onItemClick={manejoEstadoContenido} role={role} />
       <div className="cnt-dashboard">
-        <HeaderContenido userData={userData} loading={loading} />{" "}
+        <HeaderContenido userData={userData} loading={loading} />
         {role === "Profesor" && <ProfesorView />}
-        {/* {role === "Aux_Administrativo" && renderContenido()}{" "}
-        {role === "Estudiante" && renderContenido()}{" "} */}
-        {role === "Administrador" && renderContenido()}{" "}
+        {role === "Aux_Administrativo" && <AuxiliarView />}
+        {role === "Estudiante" && <EstudianteView />}
+        {role === "Administrador" && renderContenido()}
       </div>
     </div>
   );
