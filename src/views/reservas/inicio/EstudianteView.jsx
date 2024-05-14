@@ -56,12 +56,15 @@ function EstudianteView() {
         );
 
         const reservasActivas = reserva.filter(
-          (reserva) => reserva.Estado == "Pendiente"
+          (reserva) =>
+            reserva.Estado == "Pendiente" || reserva.Estado === "Aprobada"
         );
 
         const historialReservas = reserva.filter(
           (reserva) =>
-            reserva.Estado === "Finalizada" || reserva.Estado === "Cancelada"
+            reserva.Estado === "Finalizada" ||
+            reserva.Estado === "Cancelada" ||
+            reserva.Estado === "Rechazada"
         );
 
         setReservasActivas(reservasActivas);

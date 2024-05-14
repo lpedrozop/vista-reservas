@@ -30,7 +30,6 @@ function Dashboard() {
         const tokenResult = decodeToken(data.secretParse.secret);
         const userRole = tokenResult.payload.roles[0];
         setRole(userRole);
-
         setUserData(data);
       } catch (error) {
         console.error("Error al obtener los datos del usuario:", error);

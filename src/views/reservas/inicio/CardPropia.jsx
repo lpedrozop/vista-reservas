@@ -20,7 +20,7 @@ function CardPropia({ reserva, cancelarReserva }) {
       <div className="content-propia">
         <div className="icon-text">
           <div>
-            <BiBadgeCheck /> {reserva.Apr_Doc}
+            <BiBadgeCheck /> {reserva.Estado}
           </div>
           <div>
             <LuUsers /> {reserva.Aforo}
