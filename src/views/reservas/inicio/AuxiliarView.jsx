@@ -95,7 +95,7 @@ const PopoverContent = ({ reserva }) => {
       message.success("El reporte se ha enviado exitosamente");
       setTimeout(() => {
         window.location.reload();
-      }, 2000);
+      }, 800);
       return response;
     } catch (error) {
       console.error("Error al enviar el reporte:", error);
