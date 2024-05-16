@@ -88,7 +88,7 @@ function ProfesorView() {
       message.success("La reserva ha sido aprobada exitosamente");
       setTimeout(() => {
         window.location.reload();
-      }, 2000);
+      }, 800);
       return response;
     } catch (error) {
       console.error("Error al aprobar la reserva:", error);
@@ -107,7 +107,7 @@ function ProfesorView() {
       message.success("La reserva ha sido rechazada exitosamente");
       setTimeout(() => {
         window.location.reload();
-      }, 2000);
+      }, 800);
       return response;
     } catch (error) {
       console.error("Error al rechazar la reserva:", error);
@@ -124,7 +124,7 @@ function ProfesorView() {
       message.success("La reserva ha sido cancelada exitosamente");
       setTimeout(() => {
         window.location.reload();
-      }, 2000);
+      }, 800);
       return response;
     } catch (error) {
       console.error("Error al rechazar la reserva:", error);

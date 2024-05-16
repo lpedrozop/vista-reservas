@@ -15,6 +15,7 @@ export async function fetchTokenInfo() {
         const tokenParse = JSON.parse(accessTokenPeticion);
         const secretKey = sessionStorage.getItem(tokenParse.accessToken);
         const secretParse = JSON.parse(secretKey);
+
         return { response, secretParse };
       } catch (error) {
         console.error("Error al parsear el token de acceso:", error);
