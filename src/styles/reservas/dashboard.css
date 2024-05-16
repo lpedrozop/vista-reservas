@@ -15,10 +15,11 @@
 
 @media screen and (max-width: 780px) {
   .cnt-panel {
-    width: 100%;
+    width: 80vw;
   }
 
   .cnt-dashboard {
     margin-left: 0px;
+    width: 100vw;
   }
 }

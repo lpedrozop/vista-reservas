@@ -58,7 +58,7 @@ function Dashboard() {
     <div className="cnt-panel">
       <MenuLateral onItemClick={manejoEstadoContenido} role={role} />
       <div className="cnt-dashboard">
-        <HeaderContenido userData={userData} loading={loading} />
+        <HeaderContenido userData={userData} loading={loading} role={role} onItemClick={manejoEstadoContenido}/>
         {role === "Profesor" && <ProfesorView />}
         {role === "Aux_Administrativo" && <AuxiliarView />}
         {role === "Estudiante" && <EstudianteView />}

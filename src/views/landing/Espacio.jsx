@@ -3,6 +3,7 @@ import { Element } from "react-scroll";
 import Aulas from "../../assets/aulas.webp";
 import Auditorio from "../../assets/auditorio.webp";
 import Salas from "../../assets/salas-de-estudio.webp";
+import { signIn } from "../../auth/authRedirect";
 
 function CardEspacio({ titulo, parrafo, imagen }) {
   return (
@@ -20,6 +21,10 @@ function CardEspacio({ titulo, parrafo, imagen }) {
 }
 
 function EspacioComponent() {
+  const manejoInicioSesion = () => {
+    signIn();
+  };
+
   return (
     <Element name="espacios-utb">
       <section className="cnt-espacio">
@@ -43,7 +48,7 @@ function EspacioComponent() {
             />
           </div>
           <div className="cnt-btn-reservas">
-            <button className="btn-formulario">
+            <button className="btn-formulario" onClick={manejoInicioSesion}>
               Quiero reservar un espacio
             </button>
           </div>

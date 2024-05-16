@@ -184,6 +184,7 @@ function AuxiliarView() {
           "https://api-aux-qazj7.ondigitalocean.app/aux/espaciosaux",
           "GET"
         );
+
         setReservas(reserva.Reservas);
         setInfoReservas(reserva.Clases_regulares);
       } catch (error) {

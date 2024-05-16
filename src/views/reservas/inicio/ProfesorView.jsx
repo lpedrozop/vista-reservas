@@ -171,7 +171,10 @@ function ProfesorView() {
         </div>
       </div>
       <div className="footer-profesor">
-        <h5>Reservas para aprobar</h5>
+        <div className="title-historial-profesores">
+          <BiCheckCircle />
+          <h5>Reservas por aprobar</h5>
+        </div>
         {aprobarReservas.length > 0 ? (
           <div className="reserva-cards">
             {aprobarReservas.map((reserva, index) => (

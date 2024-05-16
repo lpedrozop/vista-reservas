@@ -9,7 +9,7 @@ import { FaWpforms } from "react-icons/fa";
 import { redireccionar } from "../../utils/redireccionarRutas";
 import { signOut } from "../../auth/authRedirect";
 
-function HeaderContenido({ userData, loading }) {
+function HeaderContenido({ userData, loading, role, onItemClick }) {
   const [menuVisible, setMenuVisible] = useState(false);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const userInitials = userData ? obtenerIniciales(userData.response.name) : "";
@@ -75,6 +75,13 @@ function HeaderContenido({ userData, loading }) {
     },
   ];
 
+  const filteredItems = items.filter((item) => {
+    if (role === "Profesor" || role === "Estudiante" || role === "Auxiliar") {
+      return item.key === "Salir" || item.key === "Formulario";
+    }
+    return true;
+  });
+
   return (
     <div className="head-cnt-page">
       <div className="search-head">
@@ -100,7 +107,7 @@ function HeaderContenido({ userData, loading }) {
             open={menuVisible}
             width={240}
           >
-            {items.map((item) => (
+            {filteredItems.map((item) => (
               <li
                 className="li-drawer"
                 key={item.key}
