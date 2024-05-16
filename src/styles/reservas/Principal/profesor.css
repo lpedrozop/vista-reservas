@@ -90,7 +90,7 @@
 .head-propia {
   margin: 0;
   height: 40px;
-  background-color: var(--green-color);
+  background-color: var(--gray-color-strong);
   text-align: center;
   align-items: center;
   display: flex;
@@ -378,7 +378,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    height: 70vh;
+    height: auto;
   }
 
   .cnt-historial-reservas {

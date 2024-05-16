@@ -2,13 +2,7 @@ import "../../../styles/reservas/Principal/auxiliar.css";
 import { peticionForm } from "../../../utils/peticiones";
 import React, { useEffect, useState } from "react";
 import { FaChalkboardTeacher } from "react-icons/fa";
-import {
-  BiCalendarCheck,
-  BiSolidInbox,
-  BiBuildings,
-  BiBadgeCheck,
-  BiTime,
-} from "react-icons/bi";
+import { BiCalendarCheck, BiSolidInbox, BiBuildings } from "react-icons/bi";
 import { LuUsers } from "react-icons/lu";
 import { message, Popover, Input } from "antd";
 
@@ -24,6 +18,21 @@ const Vacio = () => {
 };
 
 function Historial({ reserva }) {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const handleScrollOutside = () => {
+      setVisible(false);
+    };
+
+    const mainContainer = document.querySelector(".historial-reservas");
+    mainContainer.addEventListener("scroll", handleScrollOutside);
+
+    return () => {
+      mainContainer.removeEventListener("scroll", handleScrollOutside);
+    };
+  }, []);
+
   return (
     <div className="card-propia-historial">
       <div className="head-propia">
@@ -43,6 +52,9 @@ function Historial({ reserva }) {
             content={<PopoverContent reserva={reserva} />}
             title="Reporte"
             trigger="click"
+            placement="top"
+            open={visible}
+            onOpenChange={setVisible}
           >
             <button className="btn-reporte-reserva">Reporte</button>
           </Popover>
@@ -104,14 +116,18 @@ const PopoverContent = ({ reserva }) => {
 
   return (
     <div>
-      <p>Hubo novedad alguna:</p>
-      <button className="btns-actions-ys" onClick={handleSiClick}>
-        Sí
-      </button>
-      <button className="btns-actions-no" onClick={handleNoClick}>
-        No
-      </button>
-      {huboNovedad && (
+      {!enviarReporte && (
+        <>
+          <p>Hubo novedad alguna:</p>
+          <button className="btns-actions-ys" onClick={handleSiClick}>
+            Sí
+          </button>
+          <button className="btns-actions-no" onClick={handleNoClick}>
+            No
+          </button>
+        </>
+      )}
+      {(huboNovedad || enviarReporte) && (
         <div>
           <p>Descripción (máximo 500 caracteres):</p>
           <TextArea
@@ -120,58 +136,18 @@ const PopoverContent = ({ reserva }) => {
             onChange={(e) => setDescripcion(e.target.value)}
             maxLength={500}
           />
+          {enviarReporte && (
+            <div>
+              <button onClick={handleEnviarReporte} className="btn-send-report">
+                Enviar reporte
+              </button>
+            </div>
+          )}
         </div>
-      )}
-      {enviarReporte && (
-        <button onClick={handleEnviarReporte} className="btn-send-report">
-          Enviar reporte
-        </button>
       )}
     </div>
   );
 };
-
-function CardPropia({ reserva }) {
-  const fechaInicio = new Date(reserva.Fh_Ini);
-  const hora = fechaInicio.toLocaleTimeString();
-
-  return (
-    <div className="card-propia">
-      <div className="head-propia">
-        <h6>{reserva.Nombre}</h6>
-      </div>
-      <div className="content-propia">
-        <div className="icon-text">
-          <div>
-            <BiBadgeCheck /> {reserva.ID_User}
-          </div>
-          <div>
-            <LuUsers /> {reserva.Aforo}
-          </div>
-        </div>
-        <div className="icon-text">
-          <div>
-            <BiBuildings />
-            {reserva.ID_Espacio}
-          </div>
-          <div>
-            <BiTime />
-            {hora}
-          </div>
-        </div>
-        <div className="cnt-btn-cancelar">
-          <Popover
-            content={<PopoverContent reserva={reserva} />}
-            title="Reporte"
-            trigger="click"
-          >
-            <button className="btn-reporte-reserva">Reporte</button>
-          </Popover>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 function AuxiliarView() {
   const [infoReservas, setInfoReservas] = useState([]);
