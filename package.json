@@ -12,6 +12,7 @@
   "dependencies": {
     "@azure/msal-browser": "^2.37.0",
     "antd": "^5.14.0",
+    "date-fns": "^3.6.0",
     "dayjs": "^1.11.10",
     "jwt-decode": "^4.0.0",
     "react": "^18.2.0",

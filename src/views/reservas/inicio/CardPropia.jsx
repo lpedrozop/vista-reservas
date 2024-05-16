@@ -5,8 +5,10 @@ import { LuUsers } from "react-icons/lu";
 function CardPropia({ reserva, cancelarReserva }) {
   const fechaInicio = new Date(reserva.Fh_Ini);
 
-  const fecha = fechaInicio.toLocaleDateString();
-  const hora = fechaInicio.toLocaleTimeString();
+  const fechaISO = fechaInicio.toISOString();
+  const [fecha, horaUTC] = fechaISO.split("T");
+
+  const hora = horaUTC.slice(0, 5);
 
   const manejoCancelarReserva = () => {
     cancelarReserva(reserva.ID_Reserva);

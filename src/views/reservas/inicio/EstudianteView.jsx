@@ -56,15 +56,15 @@ function EstudianteView() {
         );
 
         const reservasActivas = reserva.filter(
-          (reserva) =>
-            reserva.Estado == "Pendiente" || reserva.Estado === "Aprobada"
+          (reserva) => reserva.Estado == "Pendiente"
         );
 
         const historialReservas = reserva.filter(
           (reserva) =>
             reserva.Estado === "Finalizada" ||
             reserva.Estado === "Cancelada" ||
-            reserva.Estado === "Rechazada"
+            reserva.Estado === "Rechazada" ||
+            reserva.Estado === "Aprobada"
         );
 
         setReservasActivas(reservasActivas);
@@ -86,7 +86,7 @@ function EstudianteView() {
       message.success("La reserva ha sido cancelada exitosamente");
       setTimeout(() => {
         window.location.reload();
-      }, 2000);
+      }, 500);
       return response;
     } catch (error) {
       console.error("Error al cancelar la reserva:", error);
