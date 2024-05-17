@@ -5,6 +5,7 @@ import { FaChalkboardTeacher } from "react-icons/fa";
 import { BiCalendarCheck, BiSolidInbox, BiBuildings } from "react-icons/bi";
 import { LuUsers } from "react-icons/lu";
 import { message, Popover, Input } from "antd";
+import CardPropia from './CardPropia'
 
 const { TextArea } = Input;
 
