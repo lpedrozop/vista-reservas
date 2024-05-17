@@ -19,7 +19,7 @@ function LeftForm() {
         <HiOutlineArrowNarrowRight />
       </div>
       <div className="bt-lf-frm">
-        <h6>© 2023 UTB </h6>
+        <h6>© 2024 UTB </h6>
         <p>Contáctanos: fruiz@utb.edu.co</p>
       </div>
     </div>
