@@ -337,6 +337,8 @@ function RightForm({ materias }) {
             body
           );
 
+          console.log(response);
+
           if (response && response.aulas && response.aulas.Disponibles) {
             const aulasDisponibles = response.aulas.Disponibles.map(
               (aula) => aula.Salon
